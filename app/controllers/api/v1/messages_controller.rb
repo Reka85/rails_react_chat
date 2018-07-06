@@ -2,7 +2,6 @@ class Api::V1::MessagesController < ActionController::Base
   before_action :set_channel
   def index
     @messages = @channel.messages
-    # render json: messages
   end
 
   def create
