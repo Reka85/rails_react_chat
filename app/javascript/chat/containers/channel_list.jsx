@@ -6,14 +6,10 @@ import { connect } from 'react-redux';
 import { selectChannel, fetchMessages } from '../actions/index';
 
 class ChannelList extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedChannel !== this.props.selectedChannel) {
-      this.props.fetchMessages(nextProps.selectedChannel);
-    }
-  }
 
   handleClick = (channel) => {
-    this.props.selectChannel(channel);
+    this.props.selectChannel();
+    this.props.fetchMessages(channel);
   }
 
   renderChannel = (channel) => {
@@ -43,8 +39,7 @@ class ChannelList extends Component {
 
 function mapStateToProps(state) {
   return {
-    channels: state.channels,
-    selectedChannel: state.selectedChannel
+    channels: state.channels
   };
 }
 

@@ -19,12 +19,11 @@ export function createMessage(channel, author, content) {
   const body = { author, content };
   const promise = fetch(url, {
     method: 'POST',
-    credentials: "same-origin",
     headers: {
       'Accept': 'application/json',
       'Content-Type': 'application/json'
     },
-    credentials: 'same-origin',
+    credentials: "same-origin",
     body: JSON.stringify(body)
   }).then(r => r.json());
 
@@ -36,7 +35,6 @@ export function createMessage(channel, author, content) {
 
 export function selectChannel(channel) {
   return {
-    type: CHANNEL_SELECTED,
-    payload: channel
+    type: CHANNEL_SELECTED
   };
 }
