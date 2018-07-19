@@ -1,7 +1,8 @@
 class Api::V1::MessagesController < ActionController::Base
   before_action :set_channel
   def index
-    @messages = @channel.messages
+    messages = @channel.messages.order('created_at ASC')
+    render json: messages
   end
 
   def create
