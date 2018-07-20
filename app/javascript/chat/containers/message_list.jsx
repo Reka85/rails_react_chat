@@ -27,6 +27,7 @@ class MessageList extends Component {
   }
 
   render () {
+    console.dir(this.props);
     return (
       <div className="channel-container">
         <div className="channel-title">

@@ -14,10 +14,6 @@ class Api::V1::MessagesController < ActionController::Base
 
   private
 
-  def message_params
-    params.require(:message).permit(:content, :user_id)
-  end
-
   def set_channel
     @channel = Channel.find_by(name: params[:channel_id])
   end
