@@ -1,12 +1,10 @@
-/* eslint no-bitwise:off */
-
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectChannel, fetchMessages } from '../actions/index';
+import { Link } from "react-router-dom";
 
 class ChannelList extends Component {
-
   handleClick = (channel) => {
     this.props.selectChannel();
     this.props.fetchMessages(channel);
@@ -20,7 +18,9 @@ class ChannelList extends Component {
         onClick={() => this.handleClick(channel)}
         role="presentation"
       >
+      <Link to={`/channels/${channel}`}>
         #{channel}
+      </Link>
       </li>
     );
   }

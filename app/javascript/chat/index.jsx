@@ -11,10 +11,11 @@ import App from './components/app';
 import messagesReducer from './reducers/messages_reducer';
 
 const chatContainer = document.getElementById('chat_app');
+const channels = JSON.parse(chatContainer.dataset.channels).map(channel => channel.name);
 
 const initialState = {
   messages: [],
-  channels: JSON.parse(chatContainer.dataset.channels).map(channel => channel.name)
+  channels: channels
 };
 
 const reducers = combineReducers({
