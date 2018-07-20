@@ -4,9 +4,11 @@ class Message < ApplicationRecord
   validates :content, presence: true
 
   def as_json(options = {})
+    name = user.nickname.nil? ? user.email.match(/[^@]*/)[0] : user.nickname
+
     {
       id: id,
-      author: user.email.match(/[^@]*/)[0],
+      author: name,
       content: content,
       created_at: created_at,
       channel: channel.name
