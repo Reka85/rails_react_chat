@@ -11,7 +11,7 @@ User.destroy_all
 Channel.destroy_all
 
 user1 = User.create(email: "mici@catmail.com", password: "123456")
-user2 = User.create(email: "tom@catmail.com", password: "234567")
+user2 = User.create(email: "tom@catmail.com", password: "123456")
 
 channels = ["general", "react", "paris"]
 
