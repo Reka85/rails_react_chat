@@ -12,19 +12,40 @@ class MessageList extends Component {
   }
 
   componentDidMount() {
+    this.subscribeActionCable(this.props);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (this.props.selectedChannel != nextProps.selectedChannel) {
+      this.subscribeActionCable(nextProps);
+    }
   }
 
   componentDidUpdate() {
     this.list.scrollTop = this.list.scrollHeight;
   }
 
-  componentWillUnmount() {
-    clearInterval(this.refresher);
-  }
+  // componentWillUnmount() {
+  //   clearInterval(this.refresher);
+  // }
 
   fetchMessages = () => {
     this.props.fetchMessages(this.props.selectedChannel);
   }
+
+  subscribeActionCable = (props) => {
+    App[`channel_${props.selectedChannel}`] = App.cable.subscriptions.create(
+      { channel: 'ChatRoomChannel', name: props.selectedChannel },
+      {
+        received: (message) => {
+          if (message.channel === props.selectedChannel) {
+            props.appendMessage(message);
+          }
+        }
+      }
+    );
+  }
+
 
   render () {
     return (
